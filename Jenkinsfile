@@ -19,5 +19,10 @@ pipeline {
                 '''
             }
         }
+        stage('Test') {
+            sh '''
+            test -f public/index.html
+            '''
+        }
     }
 }
