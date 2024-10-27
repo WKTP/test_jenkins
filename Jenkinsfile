@@ -20,9 +20,12 @@ pipeline {
             }
         }
         stage('Test') {
-            sh '''
-            test -f public/index.html
-            '''
+            steps{
+                sh '''
+                test -f public/index.html
+                '''
+            }
+            
         }
     }
 }
