@@ -27,6 +27,7 @@ pipeline {
                     sh "docker build --help"
                     sh "ls -la"
                     sh "docker build -t wktp/prem:lmao1 ."
+                    sh "docker push"
                 }
                
                 
