@@ -25,8 +25,8 @@ pipeline {
                 sh "pwd"
                 sh "whoami"
                 sh "npm ci"
-                sh "npm start"
-                sh "npm stop"
+                sh "npm test"
+                sh "ls -la"
             }
         }
 
