@@ -8,7 +8,7 @@ pipeline {
     // }
 
     environment {
-        SSH_CREDENTIALS_ID = credentials('192.168.56.67')
+        SSH_CREDS = credentials('SSH_CREDS')
         REMOTE_HOST = '192.168.56.67'
         DOCKER_CREDS = credentials('DOCKER_CREDS')
     }
@@ -28,7 +28,7 @@ pipeline {
                 ls -la
                 node --version
                 npm --version
-                docker login -u ${DOCKER_CREDS_USR}
+                docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PSW}
                 '''
             }
         }
@@ -56,7 +56,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 sshagent(['192.168.56.67']) {
-                    sh '''ssh -o StrictHostKeyChecking=no -l ${SSH_CREDENTIALS_ID_USR} ${REMOTE_HOST} " \
+                    sh '''ssh -o StrictHostKeyChecking=no -l ${SSH_CREDS_USR} ${REMOTE_HOST} " \
                     if [ -n "$(docker ps -aq)" ]; then docker ps -aq | xargs docker stop | xargs docker rm; fi && \
                     docker run -d -p 5000:5000 wktp/prem:build_from_GitLabtemplate && \
                     
