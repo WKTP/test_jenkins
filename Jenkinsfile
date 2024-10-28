@@ -59,7 +59,8 @@ pipeline {
                 sshagent(['192.168.56.67']) {
                     sh "ssh -o StrictHostKeyChecking=no -l ${SSH_CREDENTIALS_ID_USR} ${REMOTE_HOST} ' \
                     echo RUNNING APTGET UPDATE IN RANDOMPC INSTANCE && \
-                    echo INSTALL DOCKER'"
+                    echo INSTALL DOCKER && \
+                    docker pull wktp/prem:build_from_GitLabtemplate'"
                 }
             }
         }
