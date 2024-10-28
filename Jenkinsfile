@@ -60,6 +60,7 @@ pipeline {
                     sh "ssh -o StrictHostKeyChecking=no -l ${SSH_CREDENTIALS_ID_USR} ${REMOTE_HOST} ' \
                     echo RUNNING APTGET UPDATE IN RANDOMPC INSTANCE && \
                     echo INSTALL DOCKER && \
+                    echo INTO SUPERUSER && \
                     sudo su && \
                     docker pull wktp/prem:build_from_GitLabtemplate'"
                 }
