@@ -23,15 +23,19 @@ pipeline {
                 }
             }
             steps {
-                sh '''
-                echo "in docker"
-                docker --version
-                docker -login
-                '''
+                withDockerRegistry(credentialsId: 'DOCKER_CREDS', url: 'https://index.docker.io/v1/') {
+                    sh "docker buildx build --help"
+                    sh "docker build -t wktp/prem:lmao1 ."
+                }
+               
                 
             }
         }
-
+//  sh '''
+//                 echo "in docker"
+//                 docker --version
+//                 docker build -t wktp/prem:lmao1 .
+//                 '''
 // docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PSW}
 
         // stage('Test') {
@@ -53,7 +57,7 @@ pipeline {
         //     }
         // }
 
-
+//WORKED!!! DONT DELETE
         // stage('SSH and DEPLOY') {
         //     steps {
         //         echo 'Building..'
