@@ -59,7 +59,7 @@ pipeline {
                     echo RUNNING APTGET UPDATE IN RANDOMPC INSTANCE && \
                     sudo apt-get update && \
                     echo INSTALL DOCKER && \
-                    sudo apt-get install docker.io'"
+                    sudo apt-get install docker.io -y'"
                    
                 }
             }
