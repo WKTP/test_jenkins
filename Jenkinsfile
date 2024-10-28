@@ -24,7 +24,9 @@ pipeline {
             steps{
                 sh "pwd"
                 sh "whoami"
+                sh "npm test"
                 sh "npm start"
+                sh "npm stop"
             }
         }
 
