@@ -26,6 +26,7 @@ pipeline {
                 withDockerRegistry(credentialsId: 'DOCKER_CREDS', url: 'https://index.docker.io/v1/') {
                     sh "docker build --help"
                     sh "ls -la"
+                    sh "pwd"
                     sh "sudo docker build -t wktp/prem:lmao1 ."
                     sh "sudo docker push"
                 }
