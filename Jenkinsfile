@@ -26,6 +26,7 @@ pipeline {
                 sh '''
                 echo "in docker"
                 docker --version
+                docker -login
                 '''
                 
             }
