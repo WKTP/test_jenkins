@@ -25,13 +25,13 @@ pipeline {
             steps {
                 sh '''
                 echo "in docker"
-                docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PSW}
+                docker --version
                 '''
                 
             }
         }
 
-// 
+// docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PSW}
 
         // stage('Test') {
         //     agent {
