@@ -59,7 +59,7 @@ pipeline {
                 sshagent(['192.168.56.67']) {
                     sh "ssh -o StrictHostKeyChecking=no -l ${SSH_CREDENTIALS_ID_USR} ${REMOTE_HOST} ' \
                     echo RUNNING && \
-                    if [ -n '$(docker ps -aq)' ]; then docker ps -aq | xargs docker stop | xargs docker rm; fi && \
+                    if [ -n ""$(docker ps -aq)"" ]; then docker ps -aq | xargs docker stop | xargs docker rm; fi && \
                     docker network prune -f && \
                     docker run -d -p 5000:5000 wktp/prem:build_from_GitLabtemplate'"
                 }
