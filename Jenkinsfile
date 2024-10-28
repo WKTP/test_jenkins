@@ -31,30 +31,30 @@ pipeline {
         }
 
 
-//WORKED!!! DONT DELETE
-        // stage('Build') {
-        //     steps {
-        //         withDockerRegistry(credentialsId: 'DOCKER_CREDS', url: 'https://index.docker.io/v1/') {
-        //             sh "pwd"
-        //             sh "whoami"
-        //             sh "docker build -t wktp/prem:lmao1 ."
-        //             sh "docker push wktp/prem:lmao1"
-        //         }
-        //     }
-        // }
+// WORKED!!! DONT DELETE
+        stage('Build') {
+            steps {
+                withDockerRegistry(credentialsId: 'DOCKER_CREDS', url: 'https://index.docker.io/v1/') {
+                    sh "pwd"
+                    sh "whoami"
+                    sh "docker build -t wktp/prem:lmao1 ."
+                    sh "docker push wktp/prem:lmao1"
+                }
+            }
+        }
 
 
-//WORKED!!! DONT DELETE
-        // stage('Deploy') {
-        //     steps {
-        //         echo 'Building..'
-        //         sshagent(['192.168.56.67']) {
-        //             sh '''ssh -o StrictHostKeyChecking=no -l ${SSH_CREDS_USR} ${REMOTE_HOST} " \
-        //             if [ -n "$(docker ps -aq)" ]; then docker ps -aq | xargs docker stop | xargs docker rm; fi && \
-        //             docker run -d -p 5000:5000 wktp/prem:build_from_GitLabtemplate"'''
-        //         }
-        //     }
-        // }
+// WORKED!!! DONT DELETE
+        stage('Deploy') {
+            steps {
+                echo 'Building..'
+                sshagent(['SSH_CREDS']) {
+                    sh '''ssh -o StrictHostKeyChecking=no -l ${SSH_CREDS_USR} ${REMOTE_HOST} " \
+                    if [ -n "$(docker ps -aq)" ]; then docker ps -aq | xargs docker stop | xargs docker rm; fi && \
+                    docker run -d -p 5000:5000 wktp/prem:build_from_GitLabtemplate"'''
+                }
+            }
+        }
     }
 }
 
