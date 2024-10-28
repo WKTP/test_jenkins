@@ -56,8 +56,10 @@ pipeline {
                 echo 'Building..'
                 sshagent(['192.168.56.67']) {
                     sh "ssh -o StrictHostKeyChecking=no -l ${SSH_CREDENTIALS_ID_USR} ${REMOTE_HOST} ' \
-                    echo IN RANDOMPC INSTANCE && \
-                    sudo apt-get update'"
+                    echo RUNNING APTGET UPDATE IN RANDOMPC INSTANCE && \
+                    sudo apt-get update && \
+                    echo INSTALL DOCKER && \
+                    sudo apt-get install docker.io'"
                    
                 }
             }
