@@ -60,10 +60,11 @@ pipeline {
                     sh "ssh -o StrictHostKeyChecking=no -l ${SSH_CREDENTIALS_ID_USR} ${REMOTE_HOST} ' \
                     echo RUNNING APTGET UPDATE IN RANDOMPC INSTANCE && \
                     echo INSTALL DOCKER && \
+                    whoami && \
                     echo INTO SUPERUSER && \
                     sudo su && \
                     whoami && \
-                    docker run -p 5000:5000 wktp/prem:build_from_GitLabtemplate'"
+                    docker run -d -p 5000:5000 wktp/prem:build_from_GitLabtemplate'"
                 }
             }
         }
