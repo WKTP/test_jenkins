@@ -17,11 +17,11 @@ pipeline {
 
 
         stage('Build') {
-            agent {
-                docker {
-                    image 'docker:dind'
-                }
-            }
+            // agent {
+            //     docker {
+            //         image 'docker:dind'
+            //     }
+            // }
             steps {
                 withDockerRegistry(credentialsId: 'DOCKER_CREDS', url: 'https://index.docker.io/v1/') {
                     sh "docker build --help"
