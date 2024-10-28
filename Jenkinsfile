@@ -64,7 +64,7 @@ pipeline {
                     echo INTO SUPERUSER && \
                     sudo su && \
                     whoami && \
-                    docker ps -aq | xargs docker stop | xargs docker rm && \
+                    if [ docker ps -aq ]; then docker ps -aq | xargs docker stop | xargs docker rm; fi && \
                     docker run -d -p 5000:5000 wktp/prem:build_from_GitLabtemplate'"
                 }
             }
