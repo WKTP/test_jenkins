@@ -40,9 +40,9 @@ pipeline {
 
         stage('SSH Example') {
             steps {
-                script {
-                    sh 'ssh -o StrictHostKeyChecking=no vagrant@192.168.56.67 "echo Hello from Jenkins!"'
-                    echo "SSH_VAR"
+                echo 'Building..'
+                sshagent(['192.168.56.67']) {
+                    sh "ssh -o StrictHostKeyChecking=no -l ${SSH_CREDENTIALS_ID_USR} ${REMOTE_HOST} 'echo HelloWorld'"
                 }
             }
         }
