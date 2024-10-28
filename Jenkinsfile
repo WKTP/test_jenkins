@@ -60,8 +60,7 @@ pipeline {
                     sh "ssh -o StrictHostKeyChecking=no -l ${SSH_CREDENTIALS_ID_USR} ${REMOTE_HOST} ' \
                     echo RUNNING APTGET UPDATE IN RANDOMPC INSTANCE && \
                     // sudo apt-get update && \
-                    echo INSTALL DOCKER
-                    '"
+                    echo INSTALL DOCKER'"
                    
                 }
             }
