@@ -27,7 +27,7 @@ pipeline {
                     sh "docker build --help"
                     sh "ls -la"
                     sh "pwd"
-                    sh "systemctl start docker"
+                    sh "whoami"
                     sh "docker build -t wktp/prem:lmao1 ."
                     sh "docker push wktp/prem:lmao1"
                 }
