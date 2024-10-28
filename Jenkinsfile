@@ -24,7 +24,6 @@ pipeline {
             steps{
                 sh "pwd"
                 sh "whoami"
-                sh "docker build -t wktp/prem:lmao1 ."
                 sh "npm start"
             }
         }
