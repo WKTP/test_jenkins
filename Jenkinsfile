@@ -16,18 +16,16 @@ pipeline {
     stages {
 
         stage('Test') {
-            // agent {
-            //     docker {
-            //         image 'node:21-alpine'
-            //     }
-            // }
+            agent {
+                docker {
+                    image 'node:21-alpine'
+                }
+            }
             steps{
-                // withDockerRegistry(credentialsId: 'DOCKER_CREDS', url: 'https://index.docker.io/v1/') {
-                    sh "pwd"
-                    sh "whoami"
-                    sh "docker build -t wktp/prem:lmao1 ."
-                    sh "docker run -d -p 60:60 wktp/prem:lmao1"
-                // }
+                sh "pwd"
+                sh "whoami"
+                sh "docker build -t wktp/prem:lmao1 ."
+                sh "npm start"
             }
         }
 
