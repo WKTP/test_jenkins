@@ -16,25 +16,22 @@ pipeline {
     stages {
 
 
-        // stage('Build') {
-        //     agent {
-        //         docker {
-        //             image 'node:18-alpine'
-        //             reuseNode true
-        //         }
-        //     }
-        //     steps {
-        //         sh '''
-        //         ls -la
-        //         node --version
-        //         npm --version
-        //         npm ci
-        //         npm run build
-        //         ls -la
-        //         docker login -u ${DOCKER_CREDS_USR}
-        //         '''
-        //     }
-        // }
+        stage('Build') {
+            agent {
+                docker {
+                    image 'node:21-alpine'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh '''
+                ls -la
+                node --version
+                npm --version
+                docker login -u ${DOCKER_CREDS_USR}
+                '''
+            }
+        }
 
 
         // stage('Test') {
