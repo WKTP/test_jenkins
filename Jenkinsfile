@@ -45,6 +45,8 @@ pipeline {
         //     steps{
         //         sh '''
         //             test -f public/index.html
+        //             test -f src/App.js
+        //             test -f src/App.css
         //             npm test
         //         '''
         //     }
@@ -57,12 +59,13 @@ pipeline {
                 sshagent(['192.168.56.67']) {
                     sh "ssh -o StrictHostKeyChecking=no -l ${SSH_CREDENTIALS_ID_USR} ${REMOTE_HOST} ' \
                     echo RUNNING APTGET UPDATE IN RANDOMPC INSTANCE && \
-                    sudo apt-get update && \
-                    echo INSTALL DOCKER && \
-                    sudo apt-get install docker.io -y'"
+                    // sudo apt-get update && \
+                    echo INSTALL DOCKER
+                    '"
                    
                 }
             }
         }
     }
 }
+// sudo apt-get install docker.io -y && \
