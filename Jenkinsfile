@@ -10,6 +10,7 @@ pipeline {
     environment {
         SSH_CREDENTIALS_ID = credentials('192.168.56.67')
         REMOTE_HOST = '192.168.56.67'
+        DOCKER_CREDS = credentials('DOCKER_CREDS')
     }
 
     stages {
@@ -30,6 +31,7 @@ pipeline {
         //         npm ci
         //         npm run build
         //         ls -la
+        //         docker login -u ${DOCKER_CREDS_USR}
         //         '''
         //     }
         // }
@@ -53,28 +55,28 @@ pipeline {
         // }
 
 
-        stage('SSH Example') {
+        stage('SSH and DEPLOY') {
             steps {
                 echo 'Building..'
                 sshagent(['192.168.56.67']) {
                     sh '''ssh -o StrictHostKeyChecking=no -l ${SSH_CREDENTIALS_ID_USR} ${REMOTE_HOST} " \
                     if [ -n "$(docker ps -aq)" ]; then docker ps -aq | xargs docker stop | xargs docker rm; fi && \
                     docker run -d -p 5000:5000 wktp/prem:build_from_GitLabtemplate && \
+                    
                     docker ps -aq"'''
                 }
             }
         }
     }
 }
+
+
+
+// 
 // echo RUNNING APTGET UPDATE IN RANDOMPC INSTANCE && \
 // sudo apt-get update && \
 // echo INSTALL DOCKER && \
-// sudo apt-get install docker.io -y'"  
-// echo INTO SUPERUSER && \
-// sudo su && \
-
-
+// sudo apt-get install docker.io -y && \ 
 // if [ -n "$(docker ps -aq)" ]; then docker ps -aq | xargs docker stop | xargs docker rm; fi && \
-// docker network prune -f && \
-// docker run -d -p 5000:5000 wktp/prem:build_from_GitLabtemplate
-
+// docker run -d -p 5000:5000 wktp/prem:build_from_GitLabtemplate && \
+// "'''
