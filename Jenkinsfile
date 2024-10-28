@@ -19,7 +19,7 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'docker:27.3.1-cli'
+                    image 'docker:27.3.1-dind'
                 }
             }
             steps {
