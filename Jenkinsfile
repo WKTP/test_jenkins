@@ -19,8 +19,7 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'node:21-alpine'
-                    reuseNode true
+                    image 'docker:27.3.1-cli'
                 }
             }
             steps {
