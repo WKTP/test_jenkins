@@ -27,8 +27,9 @@ pipeline {
                     sh "docker build --help"
                     sh "ls -la"
                     sh "pwd"
-                    sh "sudo docker build -t wktp/prem:lmao1 ."
-                    sh "sudo docker push"
+                    sh "sudo su"
+                    sh "docker build -t wktp/prem:lmao1 ."
+                    sh "docker push"
                 }
                
                 
