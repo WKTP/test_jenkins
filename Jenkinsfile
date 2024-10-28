@@ -8,7 +8,8 @@ pipeline {
     }
 
     environment {
-        SSH_VAR = credentials('SSH_KEY')
+        SSH_CREDENTIALS_ID = credentials('192.168.56.67')
+        REMOTE_HOST = '192.168.56.67'
     }
 
     stages {
@@ -41,6 +42,7 @@ pipeline {
         stage('SSH Example') {
             steps {
                 echo 'Building..'
+                echo ${SSH_CREDENTIALS_ID_PSW}
                 sshagent(['192.168.56.67']) {
                     sh "ssh -o StrictHostKeyChecking=no -l ${SSH_CREDENTIALS_ID_USR} ${REMOTE_HOST} 'echo HelloWorld'"
                 }
