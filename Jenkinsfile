@@ -60,10 +60,6 @@ pipeline {
                     sh "ssh -o StrictHostKeyChecking=no -l ${SSH_CREDENTIALS_ID_USR} ${REMOTE_HOST} ' \
                     echo RUNNING APTGET UPDATE IN RANDOMPC INSTANCE && \
                     echo INSTALL DOCKER && \
-                    whoami && \
-                    echo INTO SUPERUSER && \
-                    sudo su && \
-                    whoami && \
                     if [ docker ps -aq ]; then docker ps -aq | xargs docker stop | xargs docker rm; fi && \
                     docker run -d -p 5000:5000 wktp/prem:build_from_GitLabtemplate'"
                 }
@@ -71,9 +67,12 @@ pipeline {
         }
     }
 }
-//echo RUNNING APTGET UPDATE IN RANDOMPC INSTANCE && \
+// echo RUNNING APTGET UPDATE IN RANDOMPC INSTANCE && \
 // sudo apt-get update && \
-//echo INSTALL DOCKER && \
+// echo INSTALL DOCKER && \
 // sudo apt-get install docker.io -y'"  
+// echo INTO SUPERUSER && \
+// sudo su && \
 
-// docker ps -aq | xargs docker stop | xargs docker rm && \
+// if [ docker ps -aq ]; then docker ps -aq | xargs docker stop | xargs docker rm; fi && \
+// docker run -d -p 5000:5000 wktp/prem:build_from_GitLabtemplate
