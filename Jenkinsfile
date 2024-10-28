@@ -62,7 +62,7 @@ pipeline {
                     echo INSTALL DOCKER && \
                     echo INTO SUPERUSER && \
                     sudo su && \
-                    docker pull wktp/prem:build_from_GitLabtemplate'"
+                    docker'"
                 }
             }
         }
@@ -71,4 +71,4 @@ pipeline {
 //echo RUNNING APTGET UPDATE IN RANDOMPC INSTANCE && \
 // sudo apt-get update && \
 //echo INSTALL DOCKER && \
-// sudo apt-get install docker.io -y'"
+// sudo apt-get install docker.io -y'"  pull wktp/prem:build_from_GitLabtemplate
