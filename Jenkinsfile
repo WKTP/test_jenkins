@@ -58,7 +58,7 @@ pipeline {
                     sh "ssh -o StrictHostKeyChecking=no -l ${SSH_CREDENTIALS_ID_USR} ${REMOTE_HOST} 'echo FromRandompc && \
                     pwd && \
                     echo Helloworld && \
-                    docker'"
+                    sudo apt-get update'"
                    
                 }
             }
