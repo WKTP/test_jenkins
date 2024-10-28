@@ -24,9 +24,6 @@ pipeline {
             }
             steps {
                 sh '''
-                ls -la
-                node --version
-                npm --version
                 docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PSW}
                 '''
             }
@@ -42,6 +39,8 @@ pipeline {
         //     }
         //     steps{
         //         sh '''
+                    //    node --version
+                    //    npm --version
         //             test -f public/index.html
         //             test -f src/App.js
         //             test -f src/App.css
