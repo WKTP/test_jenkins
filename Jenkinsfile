@@ -22,16 +22,16 @@ pipeline {
                 }
             }
             steps{
-                sh '''
-                    node --version
-                    npm --version
-                    test -f public/index.html
-                    test -f src/App.js
-                    test -f src/App.css
-                    npm test
-                '''
+                withDockerRegistry(credentialsId: 'DOCKER_CREDS', url: 'https://index.docker.io/v1/') {
+                    sh "pwd"
+                    sh "whoami"
+                    sh "docker build -t wktp/prem:lmao1 ."
+                    sh "docker run -d -p 60:60 wktp/prem:lmao1"
+                }
             }
         }
+
+
 //WORKED!!! DONT DELETE
         // stage('Build') {
         //     steps {
@@ -43,8 +43,6 @@ pipeline {
         //         }
         //     }
         // }
-
-
 
 
 //WORKED!!! DONT DELETE
@@ -67,8 +65,8 @@ pipeline {
 
 // echo RUNNING APTGET UPDATE IN RANDOMPC INSTANCE && \
 // sudo apt-get update && \
+
 // echo INSTALL DOCKER && \
 // sudo apt-get install docker.io -y && \ 
-// if [ -n "$(docker ps -aq)" ]; then docker ps -aq | xargs docker stop | xargs docker rm; fi && \
-// docker run -d -p 5000:5000 wktp/prem:build_from_GitLabtemplate && \
-// "'''
+
+// FIRST TIME SETUP
