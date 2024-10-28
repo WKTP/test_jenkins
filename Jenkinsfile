@@ -1,11 +1,11 @@
 pipeline {
-    
-    agent {
-        docker {
-            image 'node:18-alpine'
-            reuseNode true
-        }
-    }
+    agent any
+    // agent {
+    //     docker {
+    //         image 'node:18-alpine'
+    //         reuseNode true
+    //     }
+    // }
 
     environment {
         SSH_CREDENTIALS_ID = credentials('192.168.56.67')
