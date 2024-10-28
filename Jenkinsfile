@@ -42,7 +42,7 @@ pipeline {
         stage('SSH Example') {
             steps {
                 echo 'Building..'
-                echo ${SSH_CREDENTIALS_ID_PSW}
+                echo '${SSH_CREDENTIALS_ID_PSW}'
                 sshagent(['192.168.56.67']) {
                     sh "ssh -o StrictHostKeyChecking=no -l ${SSH_CREDENTIALS_ID_USR} ${REMOTE_HOST} 'echo HelloWorld'"
                 }
