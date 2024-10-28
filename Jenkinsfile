@@ -55,7 +55,8 @@ pipeline {
             steps {
                 echo 'Building..'
                 sshagent(['192.168.56.67']) {
-                    sh "ssh -o StrictHostKeyChecking=no -l ${SSH_CREDENTIALS_ID_USR} ${REMOTE_HOST} 'echo FromRandompc && \
+                    sh "ssh -o StrictHostKeyChecking=no -l ${SSH_CREDENTIALS_ID_USR} ${REMOTE_HOST} '\
+                    echo FromRandompc && \
                     pwd && \
                     echo Helloworld && \
                     sudo apt-get update'"
