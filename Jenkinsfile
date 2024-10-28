@@ -61,9 +61,8 @@ pipeline {
                     echo RUNNING APTGET UPDATE IN RANDOMPC INSTANCE && \
                     echo INSTALL DOCKER && \
                     echo INTO SUPERUSER && \
-                    sudo usermod -aG docker vagrant && \
                     sudo su && \
-                    docker ps -aq | xargs docker stop | xargs docker rm && \
+                    whoami && \
                     docker run -p 5000:5000 wktp/prem:build_from_GitLabtemplate'"
                 }
             }
@@ -74,3 +73,5 @@ pipeline {
 // sudo apt-get update && \
 //echo INSTALL DOCKER && \
 // sudo apt-get install docker.io -y'"  
+
+// docker ps -aq | xargs docker stop | xargs docker rm && \
