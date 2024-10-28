@@ -25,6 +25,10 @@ pipeline {
             steps {
                 withDockerRegistry(credentialsId: 'DOCKER_CREDS', url: 'https://index.docker.io/v1/') {
                     sh "docker buildx build --help"
+                    sh "sudo systemctl status docker"
+                    sh "sudo systemctl start docker"
+                    sh "sudo systemctl enable docker"
+                    sh "sudo systemctl status docker"
                     sh "docker build -t wktp/prem:lmao1 ."
                 }
                
