@@ -50,7 +50,7 @@ pipeline {
                 echo 'SSH in...'
                 sshagent(credentials: ['SSH_CREDS']) {
                     sh '''ssh -o StrictHostKeyChecking=no -l ${SSH_CREDS_USR} ${REMOTE_HOST} " \
-                    if [ -n "$(docker ps -aq)" ]; then docker ps -aq | xargs docker stop | xargs docker rm; fi && \
+                    docker ps -aq | xargs -r docker stop | xargs -r docker && \
                     docker run -d -p 5000:5000 wktp/prem:${BUILD_ID}"'''
                 }
             }
@@ -69,3 +69,6 @@ pipeline {
 // sudo apt-get install docker.io -y && \ 
 
 // FIRST TIME SETUP
+
+// docker ps -aq | xargs -r docker stop | xargs -r docker
+// if [ -n "$(docker ps -aq)" ]; then docker ps -aq | xargs docker stop | xargs docker rm; fi
