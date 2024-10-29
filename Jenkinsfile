@@ -32,16 +32,16 @@ pipeline {
 
 
 // WORKED!!! DONT DELETE
-        // stage('Build') {
-        //     steps {
-        //         withDockerRegistry(credentialsId: 'DOCKER_CREDS', url: '') {
-        //             sh '''pwd'''
-        //             sh '''whoami'''
-        //             sh '''docker build -t wktp/prem:${BUILD_ID} .'''
-        //             sh '''docker push wktp/prem:${BUILD_ID}'''
-        //         }
-        //     }
-        // }
+        stage('Build') {
+            steps {
+                withDockerRegistry(credentialsId: 'DOCKER_CREDS', url: '') {
+                    sh '''pwd'''
+                    sh '''whoami'''
+                    sh '''docker build -t wktp/prem:${BUILD_ID} .'''
+                    sh '''docker push wktp/prem:${BUILD_ID}'''
+                }
+            }
+        }
 
 
 // WORKED!!! DONT DELETE
