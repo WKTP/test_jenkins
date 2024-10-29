@@ -48,7 +48,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'SSH in...'
-                sshagent(credentials: ['192.168.56.67']) {
+                sshagent(credentials: ['SSH_CREDS']) {
                     sh '''ssh -o StrictHostKeyChecking=no -l vagrant ${REMOTE_HOST} " \
                     if [ -n "$(docker ps -aq)" ]; then docker ps -aq | xargs docker stop | xargs docker rm; fi && \
                     docker run -d -p 5000:5000 wktp/prem:build_from_GitLabtemplate"'''
