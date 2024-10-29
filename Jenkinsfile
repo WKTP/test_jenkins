@@ -37,8 +37,8 @@ pipeline {
                 withDockerRegistry(credentialsId: 'DOCKER_CREDS', url: '') {
                     sh '''pwd'''
                     sh '''whoami'''
-                    sh '''docker build -t wktp/prem: ${env.BUILD_ID} .'''
-                    sh '''docker push wktp/prem: ${env.BUILD_ID}'''
+                    sh '''docker build -t wktp/prem:${BUILD_NUMBER} .'''
+                    sh '''docker push wktp/prem:${BUILD_NUMBER}'''
                 }
             }
         }
