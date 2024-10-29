@@ -35,10 +35,10 @@ pipeline {
         stage('Build') {
             steps {
                 withDockerRegistry(credentialsId: 'DOCKER_CREDS', url: '') {
-                    sh "pwd"
-                    sh "whoami"
-                    sh "docker build -t wktp/prem:lmao1 ."
-                    sh "docker push wktp/prem:lmao1"
+                    sh '''pwd'''
+                    sh '''whoami'''
+                    sh '''docker build -t wktp/prem:${env.BUILD_ID} .'''
+                    sh '''docker push wktp/prem:${env.BUILD_ID}'''
                 }
             }
         }
