@@ -37,8 +37,8 @@ pipeline {
                 withDockerRegistry(credentialsId: 'DOCKER_CREDS', url: '') {
                     sh '''pwd'''
                     sh '''whoami'''
-                    sh '''docker build -t wktp/prem:${BUILD_NUMBER} .'''
-                    sh '''docker push wktp/prem:${BUILD_NUMBER}'''
+                    sh '''docker build -t wktp/prem:${BUILD_ID} .'''
+                    sh '''docker push wktp/prem:${BUILD_ID}'''
                 }
             }
         }
@@ -47,7 +47,7 @@ pipeline {
 // WORKED!!! DONT DELETE
         stage('Deploy') {
             steps {
-                echo 'Building..'
+                echo 'SSH in...'
                 sshagent([${REMOTE_HOST}]) {
                     sh '''ssh -o StrictHostKeyChecking=no -l ${SSH_CREDS_USR} ${REMOTE_HOST} " \
                     if [ -n "$(docker ps -aq)" ]; then docker ps -aq | xargs docker stop | xargs docker rm; fi && \
