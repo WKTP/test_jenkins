@@ -49,7 +49,7 @@ pipeline {
             steps {
                 echo 'SSH in...'
                 sshagent(credentials: ['SSH_CREDS']) {
-                    sh '''ssh -o StrictHostKeyChecking=no -l ${SSH_CREDS_USR} ${REMOTE_HOST} "docker ps -aq | xargs -r docker stop | xargs -r docker && \
+                    sh '''ssh -o StrictHostKeyChecking=no -l ${SSH_CREDS_USR} ${REMOTE_HOST} "docker ps -aq | xargs -r docker stop | xargs -r docker rm && \
                     docker run -d -p 5000:5000 wktp/prem:${BUILD_ID}"'''
                 }
             }
@@ -69,5 +69,6 @@ pipeline {
 
 // FIRST TIME SETUP
 
-// docker ps -aq | xargs -r docker stop | xargs -r docker
+
+// docker ps -aq | xargs -r docker stop | xargs -r docker rm
 // if [ -n "$(docker ps -aq)" ]; then docker ps -aq | xargs docker stop | xargs docker rm; fi
