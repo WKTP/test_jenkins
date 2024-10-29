@@ -15,6 +15,7 @@ pipeline {
 
     stages {
 
+// WORKED!!! DONT DELETE
         stage('Test') {
             agent {
                 docker {
@@ -47,7 +48,6 @@ pipeline {
 // WORKED!!! DONT DELETE
         stage('Deploy') {
             steps {
-                echo '${BUILD_ID}'
                 echo 'SSH in...'
                 sshagent(credentials: ['SSH_CREDS']) {
                     sh '''ssh -o StrictHostKeyChecking=no -l ${SSH_CREDS_USR} ${REMOTE_HOST} "\
