@@ -34,7 +34,7 @@ pipeline {
 // WORKED!!! DONT DELETE
         stage('Build') {
             steps {
-                withDockerRegistry(credentialsId: 'DOCKER_CREDS', url: 'https://index.docker.io/v1/') {
+                withDockerRegistry(credentialsId: 'DOCKER_CREDS') {
                     sh "pwd"
                     sh "whoami"
                     sh "docker build -t wktp/prem:lmao1 ."
@@ -42,13 +42,13 @@ pipeline {
                 }
             }
         }
-
+// , url: 'https://index.docker.io/v1/'
 
 // WORKED!!! DONT DELETE
         stage('Deploy') {
             steps {
                 echo 'Building..'
-                sshagent(['SSH_CREDS']) {
+                sshagent(['REMOTE_HOST']) {
                     sh '''ssh -o StrictHostKeyChecking=no -l ${SSH_CREDS_USR} ${REMOTE_HOST} " \
                     if [ -n "$(docker ps -aq)" ]; then docker ps -aq | xargs docker stop | xargs docker rm; fi && \
                     docker run -d -p 5000:5000 wktp/prem:build_from_GitLabtemplate"'''
