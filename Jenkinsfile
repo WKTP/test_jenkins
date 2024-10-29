@@ -15,33 +15,33 @@ pipeline {
 
     stages {
 
-        stage('Test') {
-            agent {
-                docker {
-                    image 'node:21-alpine'
-                }
-            }
-            steps{
-                sh "pwd"
-                sh "whoami"
-                sh "npm ci"
-                sh "npm test"
-                sh "ls -la"
-            }
-        }
+        // stage('Test') {
+        //     agent {
+        //         docker {
+        //             image 'node:21-alpine'
+        //         }
+        //     }
+        //     steps{
+        //         sh "pwd"
+        //         sh "whoami"
+        //         sh "npm ci"
+        //         sh "npm test"
+        //         sh "ls -la"
+        //     }
+        // }
 
 
 // WORKED!!! DONT DELETE
-        stage('Build') {
-            steps {
-                withDockerRegistry(credentialsId: 'DOCKER_CREDS', url: '') {
-                    sh '''pwd'''
-                    sh '''whoami'''
-                    sh '''docker build -t wktp/prem:${BUILD_ID} .'''
-                    sh '''docker push wktp/prem:${BUILD_ID}'''
-                }
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         withDockerRegistry(credentialsId: 'DOCKER_CREDS', url: '') {
+        //             sh '''pwd'''
+        //             sh '''whoami'''
+        //             sh '''docker build -t wktp/prem:${BUILD_ID} .'''
+        //             sh '''docker push wktp/prem:${BUILD_ID}'''
+        //         }
+        //     }
+        // }
 // , url: 'https://index.docker.io/v1/'
 
 // WORKED!!! DONT DELETE
