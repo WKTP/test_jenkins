@@ -15,20 +15,20 @@ pipeline {
 
     stages {
 
-        // stage('Test') {
-        //     agent {
-        //         docker {
-        //             image 'node:21-alpine'
-        //         }
-        //     }
-        //     steps{
-        //         sh "pwd"
-        //         sh "whoami"
-        //         sh "npm ci"
-        //         sh "npm test"
-        //         sh "ls -la"
-        //     }
-        // }
+        stage('Test') {
+            agent {
+                docker {
+                    image 'node:21-alpine'
+                }
+            }
+            steps{
+                sh "pwd"
+                sh "whoami"
+                sh "npm ci"
+                sh "npm test"
+                sh "ls -la"
+            }
+        }
 
 
 // WORKED!!! DONT DELETE
